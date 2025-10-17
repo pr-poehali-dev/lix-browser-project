@@ -73,7 +73,16 @@
   border-radius: var(--radius) !important;
 }
 
+.gsc-input-box input {
+  color: #000000 !important;
+}
+
 .gsc-search-button {
   background-color: hsl(var(--primary)) !important;
   border: none !important;
+}
+
+.gsc-results .gs-title,
+.gsc-results .gs-snippet {
+  color: #000000 !important;
 }

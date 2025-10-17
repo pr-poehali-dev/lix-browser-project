@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "name": "Get search history",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "history": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Save search query",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "query": "test search"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

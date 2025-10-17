@@ -22,6 +22,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [searchHistory, setSearchHistory] = useState<SearchHistoryItem[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -64,27 +65,50 @@ const Index = () => {
     }
   };
 
+  const clearHistory = async () => {
+    if (!confirm('Очистить всю историю поиска?')) return;
+    setSearchHistory([]);
+  };
+
   const renderSection = () => {
     switch (activeSection) {
       case 'home':
         return (
           <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8 animate-fade-in">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-6">
               <div className="flex items-center justify-center gap-3">
-                <Icon name="Globe" size={48} className="text-primary" />
+                <img 
+                  src="https://cdn.poehali.dev/files/8f1934e3-05cd-4977-920d-9354ea746850.png" 
+                  alt="Lix Browser" 
+                  className="w-16 h-16"
+                />
                 <h1 className="text-5xl font-bold text-foreground">Lix Browser</h1>
               </div>
               <p className="text-xl text-muted-foreground">Ваш умный поисковик в темной теме</p>
+              
+              <Card className="w-full max-w-3xl p-6 bg-card border-border mt-8">
+                <div className="gcse-search"></div>
+              </Card>
             </div>
             
             {searchHistory.length > 0 && (
-              <Card className="w-full max-w-2xl p-6 bg-card border-border">
+              <Card className="w-full max-w-3xl p-6 bg-card border-border">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                     <Icon name="Clock" size={20} className="text-primary" />
                     Последние поиски
                   </h3>
-                  <Badge variant="secondary">{searchHistory.length}</Badge>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="secondary">{searchHistory.length}</Badge>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={clearHistory}
+                      className="text-xs"
+                    >
+                      <Icon name="Trash2" size={14} />
+                    </Button>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   {searchHistory.map((item) => (
@@ -195,7 +219,11 @@ const Index = () => {
             </div>
             <Card className="p-8 bg-card border-border space-y-6">
               <div className="flex items-center gap-4">
-                <Icon name="Globe" size={48} className="text-primary" />
+                <img 
+                  src="https://cdn.poehali.dev/files/8f1934e3-05cd-4977-920d-9354ea746850.png" 
+                  alt="Lix Browser" 
+                  className="w-16 h-16"
+                />
                 <div>
                   <h3 className="text-2xl font-bold text-foreground">Lix Browser</h3>
                   <p className="text-muted-foreground">Версия 1.0.0</p>
@@ -247,7 +275,11 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Icon name="Globe" size={28} className="text-primary" />
+              <img 
+                src="https://cdn.poehali.dev/files/8f1934e3-05cd-4977-920d-9354ea746850.png" 
+                alt="Lix Browser" 
+                className="w-8 h-8"
+              />
               <span className="text-xl font-bold text-foreground">Lix Browser</span>
             </div>
             <div className="flex gap-2">
@@ -295,7 +327,11 @@ const Index = () => {
       <footer className="border-t border-border mt-20">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-center gap-2 text-muted-foreground">
-            <Icon name="Globe" size={20} className="text-primary" />
+            <img 
+              src="https://cdn.poehali.dev/files/8f1934e3-05cd-4977-920d-9354ea746850.png" 
+              alt="Lix Browser" 
+              className="w-5 h-5"
+            />
             <span>Lix Browser © 2024</span>
           </div>
         </div>
